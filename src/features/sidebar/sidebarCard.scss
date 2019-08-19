@@ -1,0 +1,12 @@
+.sidebarCard{
+    background-color: white;
+    margin: 1rem 0;
+    width: 250px;
+    height: 250px;
+    box-sizing: border-box;
+    padding: 2rem;
+    &__title{
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
+}
