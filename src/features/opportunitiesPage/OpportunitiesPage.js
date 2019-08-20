@@ -26,7 +26,9 @@ export default class OpportunitiesPage extends Component {
         return (
             <div className="op-es">
                 <Sidebar cards={this.state.cards}/>
-                <Route path='/op/:id' render={(props) => <CardMain {...props} cards={this.state.cards}/>}/>
+                <Route path='/op/:id' render={(props) => 
+                                        <CardMain {...props} cards={this.state.cards}/>
+                }/>
             </div>
         )
     }
