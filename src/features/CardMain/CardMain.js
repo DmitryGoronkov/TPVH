@@ -2,11 +2,17 @@ import React, { Component } from 'react'
 
 export default class CardMain extends Component {
     render() {
-        const card = this.props.cards.find((card) => card.ID === this.props.match.params.id)
+        let card = {
+            role: "a"
+        };
+        console.log("in render",card.role)
+        if (this.props.cards){
+            card = {...this.props.cards.find((card) => card.id === this.props.match.params.id)}
+        }
         return (
             
             <div>
-                Title: {card.MobileName}
+                Title: {card.role}
             </div>
         )
     }
