@@ -6,17 +6,25 @@ import firebase from 'firebase';
 import CardMain from '../CardMain/CardMain';
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
+import { getCards } from '../actions/cardsActions'
 import './OpportunitiesPage.scss'
 import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
 const  mapStateToProps = (state) => {
    
     return {
-    cards: state.firestore.ordered.cards
+    cards: state.cards,
+    //loading: state.async.loading
 }}
+const actions = {
+    getCards
+}
 class OpportunitiesPage extends Component {
     state = {
         cards: []
+    }
+    componentDidMount(){
+        this.props.getCards();
     }
     render() {
         let cards = [];
@@ -25,7 +33,6 @@ class OpportunitiesPage extends Component {
         }
         return (
             <div className="op-es">
-                <p>{this.props.data}</p>
                 <Sidebar cards={cards}/>
                 <Route path='/op/:id' render={(props) => 
                                         <CardMain {...props} cards={cards}/>
@@ -36,6 +43,6 @@ class OpportunitiesPage extends Component {
 }
 
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, actions),
     firestoreConnect([{collection: 'cards'}])
 )(OpportunitiesPage)
